@@ -85,7 +85,7 @@ class SudokuGenerator:
     '''
     def valid_in_col(self, col, num):
         # Determines if num is contained in the specified column of the board.
-        # if num already in the column, return False. otherwise, return True.
+        # if num already in the specific column, return False. otherwise, return True.
         for j in range(self.row_length):
             if self.board[j][col] == num:
                 return False
