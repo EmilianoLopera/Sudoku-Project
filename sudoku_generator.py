@@ -29,7 +29,7 @@ class SudokuGenerator:
     def __init__(self, row_length, removed_cells):
         self.row_length = row_length
         self.removed_cells = removed_cells
-        self.board = [[0 for i in range(row_length) for j in range(row_length)]]
+        self.board = [[0 for i in range(row_length)] for j in range(row_length)]
         self.box_length = math.sqrt(row_length)
 
     '''
@@ -108,7 +108,7 @@ class SudokuGenerator:
         row = row_start - row_start % int(math.sqrt(self.row_length))
         col = col_start - col_start % int(math.sqrt(self.row_length))
         for i in range(row, row + 3):
-            for j in range(col, col + 3):
+            for j in range(col, row + 3):
                 if self.board[i][j] == num:
                     return False
             return True
@@ -129,7 +129,7 @@ class SudokuGenerator:
     '''
 
     def is_valid(self, row, col, num):
-        if 0 <= row <= 9 and 0 <= col <= 9 and self.board[row][col] == num and self.valid_in_box():
+        if 0 <= row <= 9 and 0 <= col <= 9 and self.board[row][col] == num:
             return False
         return True
 
@@ -147,8 +147,8 @@ class SudokuGenerator:
     def fill_box(self, row_start, col_start):
         row = row_start - row_start % int(math.sqrt(self.row_length))
         col = col_start - col_start % int(math.sqrt(self.row_length))
-        for i in range(row, row + 3):
-            for j in range(col, col + 3):
+        for i in range(row, 3):
+            for j in range(col, 3):
                 if self.board[i][j] == 0:
                     self.board[i][j] = random.randint(0,9)
             return None
@@ -292,11 +292,7 @@ class cell:
     def set_sketched_value(self, value):
         self.value = value
 
-    def draw(self):
-        difficulty = input('Select Difficulty: ')
-        for i in range(empty_cells_wanted):
-            if self.board[random.randint(0,9)][random.randint(0,9)] != 0
-
+    # :
 
 
 
@@ -363,14 +359,14 @@ class Board:
         pass
 
     def is_full(self):
-        for row in self.board
-            for num in row
-                if num == 0
+        for row in self.board:
+            for num in row:
+                if num == 0:
                     return False
 
     def update_board(self):
         pass
 
-
-
+x = SudokuGenerator(9,9)
+x.print_board()
 
