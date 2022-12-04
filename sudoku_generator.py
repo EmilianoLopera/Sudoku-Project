@@ -81,7 +81,7 @@ class SudokuGenerator:
 	col is the index of the column we are checking
 	num is the value we are looking for in the column
 	
-	Return: boolean
+	return: Boolean
     '''
     def valid_in_col(self, col, num):
         # Determines if num is contained in the specified column of the board.
