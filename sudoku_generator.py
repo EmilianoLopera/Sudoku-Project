@@ -108,7 +108,7 @@ class SudokuGenerator:
         row = row_start - row_start % int(math.sqrt(self.row_length))
         col = col_start - col_start % int(math.sqrt(self.row_length))
         for i in range(row, row + 3):
-            for j in range(col, row + 3):
+            for j in range(col, col + 3):
                 if self.board[i][j] == num:
                     return False
             return True
@@ -366,7 +366,4 @@ class Board:
 
     def update_board(self):
         pass
-
-x = SudokuGenerator(9,9)
-x.print_board()
 
