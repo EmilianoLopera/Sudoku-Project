@@ -106,6 +106,7 @@ def draw_game_over(screen):
 
 if __name__ == '__main__':
     game_over = False
+    pass
     chip = 'x'
     winner = 0
     pygame.init()
