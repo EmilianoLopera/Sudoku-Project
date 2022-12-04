@@ -148,9 +148,9 @@ class SudokuGenerator:
         col = col_start - col_start % int(math.sqrt(self.row_length))
         for i in range(row, row + 3):
             for j in range(col, col + 3):
-                if self.board[i][j] == 0:
-                    self.board[i][j] = random.randint(0,9)
-        return None
+                if self.board[i][j] == num:
+
+            return True
 
     '''
     Fills the three boxes along the main diagonal of the board
@@ -161,14 +161,7 @@ class SudokuGenerator:
     '''
 
     def fill_diagonal(self):
-        if self.board[0][0] == 0:
-            self.board[0][0] = random.randint(0,9)
-        if self.board[3][3] == 0:
-            self.board[3][3] = random.randint(0,9)
-        if self.board[6][6] == 0:
-            self.board[6][6] = random.randint(0,9)
-
-
+        pass
 
     '''
     DO NOT CHANGE
@@ -318,6 +311,14 @@ class Board:
                 (WIDTH, i * SQUARE_SIZE),
                 LINE_WIDTH
             )
+            if i == 3 or 6:
+                pygame.draw.line(
+                    screen,
+                    LINE_COLOR,
+                    (0, i * SQUARE_SIZE),
+                    (WIDTH, i * SQUARE_SIZE),
+                    BOLD_LINE
+                )
         # draw vertical lines
         for j in range(1, BOARD_COLS):
             pygame.draw.line(
@@ -325,8 +326,16 @@ class Board:
                 LINE_COLOR,
                 (j * SQUARE_SIZE, 0),
                 (j * SQUARE_SIZE, HEIGHT),
-                LINE_WIDTH
+                BOLD_LINE
             )
+            if j == 3 or 6:
+                pygame.draw.line(
+                    screen,
+                    LINE_COLOR,
+                    (j * SQUARE_SIZE, 0),
+                    (j * SQUARE_SIZE, HEIGHT),
+                    LINE_WIDTH
+                )
         # draw cells
         for i in range(self.rows):
             for j in range(self.cols):
