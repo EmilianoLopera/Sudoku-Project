@@ -55,7 +55,6 @@ class SudokuGenerator:
 	Return: boolean
     '''
     def valid_in_row(self, row, num):
-        print("HI")
         pass
 
     '''
