@@ -1,5 +1,6 @@
 import math, random
 import pygame
+from constants import *
 
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
@@ -148,10 +149,9 @@ class SudokuGenerator:
         col = col_start - col_start % int(math.sqrt(self.row_length))
         for i in range(row, row + 3):
             for j in range(col, col + 3):
-                if self.board[i][j] == num:
-                    pass
-
-            return True
+                if self.board[i][j] == 0:
+                    self.board[i][j] = random.randint(0,9)
+            return None
 
     '''
     Fills the three boxes along the main diagonal of the board
@@ -162,7 +162,10 @@ class SudokuGenerator:
     '''
 
     def fill_diagonal(self):
-        pass
+        self.fill_box(0,0)
+        self.fill_box(3,3)
+        self.fill_box(6,6)
+
 
     '''
     DO NOT CHANGE
@@ -291,7 +294,10 @@ class cell:
         self.value = value
 
     def draw(self):
-        pass
+        difficulty = input('Select Difficulty: ')
+        for i in range(empty_cells_wanted):
+            if self.board[random.randint(0,9)][random.randint(0,9)] != 0
+
 
 
 
