@@ -127,9 +127,9 @@ class SudokuGenerator:
     '''
 
     def is_valid(self, row, col, num):
-        if 0 <= row <= 9 and 0 <= col <= 9 and self.board[row][col] == 0:
-            return True
-        return False
+        if 0 <= row <= 9 and 0 <= col <= 9 and self.board[row][col] == num and self.valid_in_box():
+            return False
+        return True
 
     '''
     Fills the specified 3x3 box with values
@@ -294,5 +294,6 @@ class Board:
 
 
     def draw(self):
+        pass
 
 
