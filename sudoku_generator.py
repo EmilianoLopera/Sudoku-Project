@@ -117,7 +117,9 @@ class SudokuGenerator:
     '''
 
     def is_valid(self, row, col, num):
-        pass
+        if 0 <= row <= 9 and 0 <= col <= 9 and self.board[row][col] == 0:
+            return True
+        return False
 
     '''
     Fills the specified 3x3 box with values
@@ -238,7 +240,7 @@ def generate_sudoku(size, removed):
     sudoku.remove_cells()
     board = sudoku.get_board()
     return board
-print('emi testing now')
+
 
 class cell:
     def __init__(self, value, row, col, screen):
@@ -275,4 +277,12 @@ class cell:
         for i in range(self.rows):
             for j in range(self.cols):
                 self.cells[i][j].draw(self.screen)
+
+
+class Board:
+    def __init__(self):
+
+
+    def draw(self):
+
 
