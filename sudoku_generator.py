@@ -149,6 +149,7 @@ class SudokuGenerator:
         for i in range(row, row + 3):
             for j in range(col, col + 3):
                 if self.board[i][j] == num:
+                    pass
 
             return True
 
@@ -293,7 +294,19 @@ class Board:
                 (0, i * SQUARE_SIZE),
                 (WIDTH, i * SQUARE_SIZE),
                 LINE_WIDTH
+
             )
+            if i == 3 or 6:
+                pygame.draw.line(
+                    screen,
+                    LINE_COLOR,
+                    (0, i * SQUARE_SIZE),
+                    (WIDTH, i * SQUARE_SIZE),
+                    BOLD_LINE
+                )
+
+
+
         # draw vertical lines
         for j in range(1, BOARD_COLS):
             pygame.draw.line(
@@ -303,6 +316,15 @@ class Board:
                 (j * SQUARE_SIZE, HEIGHT),
                 LINE_WIDTH
             )
+            if J == 3 or 6:
+                pygame.draw.line(
+                    screen,
+                    LINE_COLOR,
+                    (j * SQUARE_SIZE, 0),
+                    (j * SQUARE_SIZE, HEIGHT),
+                    BOLD_LINE
+                )
+
         # draw cells
         for i in range(self.rows):
             for j in range(self.cols):
@@ -324,13 +346,19 @@ class Board:
         pass
 
     def is_full(self):
-        for row in self.board
-            for num in row
-                if num == 0
+        for row in self.board:
+            for num in row:
+                if num == 0:
                     return False
 
     def update_board(self):
         pass
+
+    def find_empty(self):
+       pass
+
+    def check_board(self):
+       pass
 
 
 
