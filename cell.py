@@ -15,7 +15,7 @@ class Cell:
         self.value = val
 
     def draw(self, screen):
-        chip_font = pygame.font.Font(None, 400)
+        chip_font = pygame.font.Font(None, 50)
         chip_x_surf = chip_font.render('x', 0, CROSS_COLOR)
         chip_o_surf = chip_font.render('o', 0, CIRCLE_COLOR)
         if self.value == 'x':

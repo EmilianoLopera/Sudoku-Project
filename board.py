@@ -17,9 +17,9 @@ class Board:
 
     def initialize_board(self):
         board = []
-        for i in range(3):
+        for i in range(9):
             row = []
-            for j in range(3):
+            for j in range(9):
                 row.append("-")
             board.append(row)
         return board
@@ -35,13 +35,31 @@ class Board:
         for i in range(1, 9):
             pygame.draw.line(self.screen, LINE_COLOR, (0, SQUARE_SIZE * i),
                              (WIDTH, SQUARE_SIZE * i), LINE_WIDTH)
+            if i == 3 or i == 6:
+                pygame.draw.line(
+                    self.screen,
+                    LINE_COLOR,
+                    (0, i * SQUARE_SIZE),
+                    (WIDTH, i * SQUARE_SIZE),
+                    BOLD_LINE
+                )
+
         # draw vertical lines
         for i in range(1, 9):
             pygame.draw.line(self.screen, LINE_COLOR, (SQUARE_SIZE * i, 0),
                              (SQUARE_SIZE * i, HEIGHT), LINE_WIDTH)
+            if i == 3 or i == 6:
+                pygame.draw.line(
+                    self.screen,
+                    LINE_COLOR,
+                    (i * SQUARE_SIZE, 0),
+                    (i * SQUARE_SIZE, HEIGHT),
+                    BOLD_LINE
+                )
         for i in range(self.rows):
             for j in range(self.cols):
                 self.cells[i][j].draw(self.screen)
+
 
     def mark_square(self, row, col, chip_type):
         self.board[row][col] = chip_type

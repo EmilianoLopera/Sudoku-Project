@@ -149,6 +149,7 @@ class SudokuGenerator:
         for i in range(row, row + 3):
             for j in range(col, col + 3):
                 if self.board[i][j] == num:
+                    pass
 
             return True
 
@@ -309,7 +310,7 @@ class Board:
                 LINE_COLOR,
                 (j * SQUARE_SIZE, 0),
                 (j * SQUARE_SIZE, HEIGHT),
-                BOLD_LINE
+                LINE_WIDTH
             )
             if j == 3 or 6:
                 pygame.draw.line(
@@ -317,7 +318,7 @@ class Board:
                     LINE_COLOR,
                     (j * SQUARE_SIZE, 0),
                     (j * SQUARE_SIZE, HEIGHT),
-                    LINE_WIDTH
+                    BOLD_LINE
                 )
         # draw cells
         for i in range(self.rows):

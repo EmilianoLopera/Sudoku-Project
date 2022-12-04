@@ -116,7 +116,7 @@ if __name__ == '__main__':
     # draw_lines()
     # middle_cell = Cell('o', 1, 1, 200, 200)
     # middle_cell.draw(screen)
-    board = Board(3, 3, WIDTH, HEIGHT, screen)
+    board = Board(9, 9, WIDTH, HEIGHT, screen)
     # board.print_board()
     board.draw()
     while True:
