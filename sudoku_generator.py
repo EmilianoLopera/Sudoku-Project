@@ -237,7 +237,24 @@ class SudokuGenerator:
     '''
 
     def remove_cells(self):
-        pass
+        difficult = input("difficulty: ")
+
+        if difficult == "easy":
+            for rand in range(0,30):
+                self.board[random.randint(0,9)][random.randint(0,9)] = 0
+        if difficult == "medium":
+            for rand in range(0,40):
+                self.board[random.randint(0,9)][random.randint(0,9)] = 0
+        if difficult == "hard":
+            for rand in range(0,50):
+                self.board[random.randint(0,9)][random.randint(0,9)] = 0
+
+
+
+
+
+
+
 
 
 '''
