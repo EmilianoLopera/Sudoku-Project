@@ -161,7 +161,14 @@ class SudokuGenerator:
     '''
 
     def fill_diagonal(self):
-        pass
+        if self.board[0][0] == 0:
+            self.board[0][0] = random.randint(0,9)
+        if self.board[3][3] == 0:
+            self.board[3][3] = random.randint(0,9)
+        if self.board[6][6] == 0:
+            self.board[6][6] = random.randint(0,9)
+
+
 
     '''
     DO NOT CHANGE
