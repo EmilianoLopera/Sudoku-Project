@@ -131,7 +131,7 @@ if __name__ == '__main__':
                     board.print_board()
                     board.mark_square(clicked_row, clicked_col, chip)
                     if board.check_if_winner(chip):
-                        if chip == 'x':
+                        if chip == 'X':
                             winner = 1
                         else:
                             winner = 2
