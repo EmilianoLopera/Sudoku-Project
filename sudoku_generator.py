@@ -1,4 +1,4 @@
-import math, random
+import math
 import pygame
 
 """
@@ -266,6 +266,19 @@ class cell:
         self.value = value
 
     def draw(self):
+        pass
+
+
+
+class Board:
+    def __init__(self, width, height, screen, difficulty):
+        self.width = width
+        self.height = height
+        self.screen = screen
+        self.difficulty = difficulty
+
+
+    def draw(self):
         for i in range(1, BOARD_ROWS):
             pygame.draw.line(
                 screen,
@@ -288,11 +301,30 @@ class cell:
             for j in range(self.cols):
                 self.cells[i][j].draw(self.screen)
 
+    def select(self, row, col):
+        pass
 
-class Board:
-    def __init__(self):
+    def click(self, x , y):
+        pass
+
+    def clear(self):
+        pass
+
+    def sketch(self, value):
+        pass
+
+    def place_number(self, value):
+        pass
+
+    def is_full(self):
+        for row in self.board
+            for num in row
+                if num == 0
+                    return False
+
+    def update_board(self):
+        pass
 
 
-    def draw(self):
 
 
