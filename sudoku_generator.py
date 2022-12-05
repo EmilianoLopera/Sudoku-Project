@@ -161,7 +161,6 @@ class SudokuGenerator:
                 if self.board[i][j] == 0:
                     self.board[i][j] = random.randint(1,9)
 
-
     '''
     Fills the three boxes along the main diagonal of the board
     These are the boxes which start at (0,0), (3,3), and (6,6)
@@ -377,9 +376,12 @@ class Board:
     def update_board(self):
         pass
 
-x = generate_sudoku(9,9)
-for y in x:
-    for j in y:
-        print(j, end=" ")
-    print()
+
+if __name__ == '__main__':
+
+    x = generate_sudoku(9,9)
+    for y in x:
+        for j in y:
+            print(j, end=" ")
+        print()
 
