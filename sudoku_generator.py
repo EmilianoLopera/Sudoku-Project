@@ -155,10 +155,10 @@ class SudokuGenerator:
     def fill_box(self, row_start, col_start):
         row = row_start - row_start % int(math.sqrt(self.row_length))
         col = col_start - col_start % int(math.sqrt(self.row_length))
-        for i in range(row, row + 3):
-            for j in range(col, row + 3):
+        for i in range(row, 9):
+            for j in range(0, 9):
                 if self.board[i][j] == 0:
-                    self.board[i][j] = random.randint(0,9)
+                    self.board[i][j] = random.randint(1,9)
             return None
 
     '''
@@ -376,5 +376,9 @@ class Board:
     def update_board(self):
         pass
 
-generate_sudoku(9,0)
+x = generate_sudoku(9,9)
+for y in x:
+    for j in y:
+        print(j, end=" ")
+    print()
 
