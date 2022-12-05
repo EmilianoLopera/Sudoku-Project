@@ -153,7 +153,6 @@ class SudokuGenerator:
     '''
 
     def fill_box(self, row_start, col_start):
-
         row = row_start - row_start % int(math.sqrt(self.row_length))
         col = col_start - col_start % int(math.sqrt(self.row_length))
         for i in range(row, 9):
