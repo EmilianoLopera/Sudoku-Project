@@ -144,6 +144,7 @@ class SudokuGenerator:
 	i.e. the box is from (row_start, col_start) to (row_start+2, col_start+2)
 
 	Return: None
+	pass
     '''
 
     def fill_box(self, row_start, col_start):
@@ -387,6 +388,7 @@ if __name__ == '__main__':
         for j in y:
             print(j, end=" ")
         print()
+
 #     x = SudokuGenerator(9, 0)
 #     x.fill_values()
 #     for row in x.board:
