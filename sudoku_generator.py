@@ -236,10 +236,16 @@ class SudokuGenerator:
     '''
 
     def remove_cells(self):
-        remove = 20
-        for rand in range(0, remove):
-            if self.board[random.randint(0, 8)][random.randint(0, 8)] != 0:
-                self.board[random.randint(0, 8)][random.randint(0, 8)] = 0
+        remove = self.removed_cells
+        for i in range(remove):
+            (x,y) = (random.randint(0,8), random.randint(0,8))
+            while self.board[x][y] == 0:
+                (x, y) = (random.randint(0, 8), random.randint(0, 8))
+            self.board[x][y] = 0
+        # for rand in range(0, remove):
+        #     cell = self.board[random.randint(0, 8)][random.randint(0, 8)]
+        #     if cell != 0:
+        #         self.board[random.randint(0, 8)][random.randint(0, 8)] = 0
 
 
 
@@ -372,7 +378,7 @@ class Board:
 
 if __name__ == '__main__':
 
-    x = generate_sudoku(9, 9)
+    x = generate_sudoku(9, 20)
     for y in x:
         for j in y:
             print(j, end=" ")

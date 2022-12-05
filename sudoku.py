@@ -150,7 +150,7 @@ if __name__ == '__main__':
     #board = Board(9, 9, WIDTH, HEIGHT, screen)
     # board.print_board()
     #board.draw()
-    x = generate_sudoku(9, 9)
+    x = generate_sudoku(9, 20)
     for y in x:
         for j in y:
             print(j, end=" ")
