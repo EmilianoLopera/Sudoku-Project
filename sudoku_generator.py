@@ -129,10 +129,18 @@ class SudokuGenerator:
     '''
 
     def is_valid(self, row, col, num):
-        if SudokuGenerator.valid_in_row(self, row, num) and SudokuGenerator.valid_in_col(self, col, num) and SudokuGenerator.valid_in_box(row, col, num):
-            return True
-        else:
-            return False
+        for i in range(self.row_length):
+            if self.board[row][i] == num:
+                return False
+            if self.board[i][col] == num:
+                return False
+
+
+        #
+        # if SudokuGenerator.valid_in_row(self, row, num) and SudokuGenerator.valid_in_col(self, col, num) and SudokuGenerator.valid_in_box(row, col, num):
+        #     return True
+        # else:
+        #     return False
 
     '''
     Fills the specified 3x3 box with values
@@ -368,7 +376,6 @@ class Board:
     def update_board(self):
         pass
 
-x = SudokuGenerator(9,9)
-x.print_board()
+
 generate_sudoku(9,30)
 
