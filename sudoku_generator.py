@@ -129,7 +129,7 @@ class SudokuGenerator:
     '''
 
     def is_valid(self, row, col, num):
-        if SudokuGenerator.valid_in_row(row, num) and SudokuGenerator.valid_in_col(col, num) and SudokuGenerator.valid_in_box(row, col, num):
+        if SudokuGenerator.valid_in_row(self, row, num) and SudokuGenerator.valid_in_col(self, col, num) and SudokuGenerator.valid_in_box(row, col, num):
             return True
         else:
             return False
@@ -148,8 +148,8 @@ class SudokuGenerator:
     def fill_box(self, row_start, col_start):
         row = row_start - row_start % int(math.sqrt(self.row_length))
         col = col_start - col_start % int(math.sqrt(self.row_length))
-        for i in range(row, 3):
-            for j in range(col, 3):
+        for i in range(row, row + 3):
+            for j in range(col, row + 3):
                 if self.board[i][j] == 0:
                     self.board[i][j] = random.randint(0,9)
             return None
