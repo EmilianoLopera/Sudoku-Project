@@ -370,4 +370,5 @@ class Board:
 
 x = SudokuGenerator(9,9)
 x.print_board()
+generate_sudoku(9,30)
 
