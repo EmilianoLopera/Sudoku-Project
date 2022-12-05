@@ -312,6 +312,16 @@ class Board:
         self.difficulty = difficulty
 
     def draw(self):
+        for j in range(len(self.board)):
+            for q in range(len(self.board[j])):
+                if self.board[j][q] != 0:
+                    position = (((j+1) * 50) + 20, ((q+1) * 50)+15)
+                    font = pygame.font.SysFont('arial', 25)
+                    text = font.render(str(self.board[j][q]), True, (0, 0, 0))
+                    self.win.blit(text, position)
+                pygame.display.update()
+
+
         for i in range(1, BOARD_ROWS):
             pygame.draw.line(
                 screen,
