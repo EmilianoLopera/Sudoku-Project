@@ -117,6 +117,7 @@ class SudokuGenerator:
 
 
 
+
     '''
     Determines if it is valid to enter num at (row, col) in the board
     This is done by checking that num is unused in the appropriate, row, column, and box
@@ -129,17 +130,10 @@ class SudokuGenerator:
     '''
 
     def is_valid(self, row, col, num):
-        for i in range(self.row_length):
-            if int(self.board[row][i]) == num:
-                return False
-            if self.board[i][col] == num:
-                return False
+        if self.valid_in_row(row, num) and self.valid_in_box(row, col, num) and self.valid_in_col(col, num):
+            return True
+        return False
 
-        #
-        # if SudokuGenerator.valid_in_row(self, row, num) and SudokuGenerator.valid_in_col(self, col, num) and SudokuGenerator.valid_in_box(row, col, num):
-        #     return True
-        # else:
-        #     return False
 
     '''
     Fills the specified 3x3 box with values
@@ -153,13 +147,21 @@ class SudokuGenerator:
     '''
 
     def fill_box(self, row_start, col_start):
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        # row = row_start - row_start % int(math.sqrt(self.row_length))
+        # col = col_start - col_start % int(math.sqrt(self.row_length))
+        # for i in range(row, 9):
+        #     for j in range(col, 9):
+        #         if self.board[i][j] == 0:
+        #             for num in range(0,9):
+        #                 if(self.is_valid(i,j,num)):
+        #                     self.board [i][j] = random.randint(1,9)
 
-        row = row_start - row_start % int(math.sqrt(self.row_length))
-        col = col_start - col_start % int(math.sqrt(self.row_length))
-        for i in range(row, 9):
-            for j in range(0, 9):
-                if self.board[i][j] == 0:
-                    self.board[i][j] = random.randint(1,9)
+        for i in range(3):
+            for j in range(3):
+                if self.board[j + row_start][i + col_start] == 0:
+                    self.board[j + row_start][i + col_start] = arr.pop(random.randint(0,len(arr)-1))
+
 
     '''
     Fills the three boxes along the main diagonal of the board
@@ -175,8 +177,9 @@ class SudokuGenerator:
         self.fill_box(6,6)
 
 
+
     '''
-    DO NOT CHANGE
+    do not change
     Provided for students
     Fills the remaining cells of the board
     Should be called after the diagonal boxes have been filled
@@ -385,3 +388,4 @@ if __name__ == '__main__':
             print(j, end=" ")
         print()
 
+game = SudokuGenerator(9, 40)
