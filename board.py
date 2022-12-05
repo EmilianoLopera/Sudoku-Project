@@ -4,7 +4,7 @@ from cell import Cell
 
 
 class Board:
-    def __init__(self, rows, cols, width, height, screen):
+  """  def __init__(self, rows, cols, width, height, screen):
         self.rows = rows
         self.cols = cols
         self.width = width
@@ -13,9 +13,9 @@ class Board:
         self.board = self.initialize_board()
         self.cells = [[Cell(self.board[i][j], i, j, self.height // self.rows,
                             self.width // self.cols) for j in range(cols)] for i in
-                      range(rows)]
+                      range(rows)]"""
 
-    def initialize_board(self):
+ """   def initialize_board(self):
         board = []
         for i in range(9):
             row = []
@@ -29,8 +29,8 @@ class Board:
             for j, col in enumerate(row):
                 print(self.board[i][j], end=" ")
             print()
-
-    def draw(self):
+"""
+   """ def draw(self):
         # draw lines
         for i in range(1, 9):
             pygame.draw.line(self.screen, LINE_COLOR, (0, SQUARE_SIZE * i),
@@ -59,7 +59,7 @@ class Board:
         for i in range(self.rows):
             for j in range(self.cols):
                 self.cells[i][j].draw(self.screen)
-
+"""
 
     def mark_square(self, row, col, chip_type):
         self.board[row][col] = chip_type
@@ -72,7 +72,7 @@ class Board:
     def available_square(self, row, col):
         return self.board[row][col] == '-'
 
-    def check_if_winner(self, chip_type):
+    """def check_if_winner(self, chip_type):
         for i in range(self.rows):
             if self.board[i][0] == self.board[i][1] and self.board[i][1] == self.board[i][2] and self.board[i][2] == chip_type:
                 return True
@@ -83,7 +83,7 @@ class Board:
             return True
         if self.board[2][0] == self.board[1][1] == self.board[0][2] == chip_type:
             return True
-        return False
+        return False"""
 
     def board_is_full(self):
         for i in range(self.rows):
