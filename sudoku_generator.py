@@ -159,7 +159,7 @@ class SudokuGenerator:
             for j in range(0, 9):
                 if self.board[i][j] == 0:
                     self.board[i][j] = random.randint(1,9)
-            return None
+
 
     '''
     Fills the three boxes along the main diagonal of the board
