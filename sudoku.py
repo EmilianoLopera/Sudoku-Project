@@ -1,6 +1,6 @@
 import pygame, sys
 from constants import *
-from sudoku_generator import Board
+from sudoku_generator import Board, generate_sudoku
 
 
 def draw_game_start(screen):
@@ -113,13 +113,52 @@ if __name__ == '__main__':
     pygame.display.set_caption("Sudoku")
     draw_game_start(screen)  # Calls function to draw start screen
     screen.fill(BG_COLOR)
+
+    for i in range(1, 9):
+        pygame.draw.line(screen, LINE_COLOR, (0, SQUARE_SIZE * i),
+                         (WIDTH, SQUARE_SIZE * i), LINE_WIDTH)
+        if i == 3 or i == 6:
+            pygame.draw.line(
+                screen,
+                LINE_COLOR,
+                (0, i * SQUARE_SIZE),
+                (WIDTH, i * SQUARE_SIZE),
+                BOLD_LINE
+            )
+
+    # draw vertical lines
+    for i in range(1, 9):
+        pygame.draw.line(screen, LINE_COLOR, (SQUARE_SIZE * i, 0),
+                         (SQUARE_SIZE * i, HEIGHT), LINE_WIDTH)
+        if i == 3 or i == 6:
+            pygame.draw.line(
+                screen,
+                LINE_COLOR,
+                (i * SQUARE_SIZE, 0),
+                (i * SQUARE_SIZE, HEIGHT),
+                BOLD_LINE
+            )
+    for i in range(9):
+        for j in range(9):
+            pass
+            #cells[i][j].draw(screen)
+
+
     # draw_lines()
     # middle_cell = Cell('o', 1, 1, 200, 200)
     # middle_cell.draw(screen)
-    board = Board(9, 9, WIDTH, HEIGHT, screen)
+    #board = Board(9, 9, WIDTH, HEIGHT, screen)
     # board.print_board()
-    board.draw()
+    #board.draw()
+    x = generate_sudoku(9, 9)
+    for y in x:
+        for j in y:
+            print(j, end=" ")
+        print()
+
+
     while True:
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()

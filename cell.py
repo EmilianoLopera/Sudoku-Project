@@ -16,8 +16,8 @@ class Cell:
 
     def draw(self, screen):
         chip_font = pygame.font.Font(None, 65)
-        chip_x_surf = chip_font.render('x', 0, CROSS_COLOR)
-        chip_o_surf = chip_font.render('o', 0, CIRCLE_COLOR)
+        chip_x_surf = chip_font.render('1', 0, CROSS_COLOR)
+        chip_o_surf = chip_font.render('2', 0, CIRCLE_COLOR)
         if self.value == 'x':
             chip_x_rect = chip_x_surf.get_rect(
                 center=(self.width // 2 + self.width * self.col,

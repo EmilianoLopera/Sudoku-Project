@@ -39,7 +39,6 @@ class SudokuGenerator:
 	Return: list[list]
     '''
 
-
     def get_board(self):
         return self.board
 
@@ -113,11 +112,6 @@ class SudokuGenerator:
                     return False
         return True
 
-
-
-
-
-
     '''
     Determines if it is valid to enter num at (row, col) in the board
     This is done by checking that num is unused in the appropriate, row, column, and box
@@ -133,7 +127,6 @@ class SudokuGenerator:
         if self.valid_in_row(row, num) and self.valid_in_box(row, col, num) and self.valid_in_col(col, num):
             return True
         return False
-
 
     '''
     Fills the specified 3x3 box with values
@@ -161,8 +154,7 @@ class SudokuGenerator:
         for i in range(3):
             for j in range(3):
                 if self.board[j + row_start][i + col_start] == 0:
-                    self.board[j + row_start][i + col_start] = arr.pop(random.randint(0,len(arr)-1))
-
+                    self.board[j + row_start][i + col_start] = arr.pop(random.randint(0, len(arr) - 1))
 
     '''
     Fills the three boxes along the main diagonal of the board
@@ -173,11 +165,9 @@ class SudokuGenerator:
     '''
 
     def fill_diagonal(self):
-        self.fill_box(0,0)
-        self.fill_box(3,3)
-        self.fill_box(6,6)
-
-
+        self.fill_box(0, 0)
+        self.fill_box(3, 3)
+        self.fill_box(6, 6)
 
     '''
     do not change
@@ -246,7 +236,14 @@ class SudokuGenerator:
     '''
 
     def remove_cells(self):
-        pass
+        remove = 20
+        for rand in range(0, remove):
+            if self.board[random.randint(0, 8)][random.randint(0, 8)] != 0:
+                self.board[random.randint(0, 8)][random.randint(0, 8)] = 0
+
+
+
+
         # difficult = input("difficulty: ")
         # if difficult == "easy":
         #     for rand in range(0,30):
@@ -257,13 +254,6 @@ class SudokuGenerator:
         # if difficult == "hard":
         #     for rand in range(0,50):
         #         self.board[random.randint(0,9)][random.randint(0,9)] = 0
-
-
-
-
-
-
-
 
 
 '''
@@ -308,14 +298,12 @@ class cell:
     # :
 
 
-
 class Board:
     def __init__(self, width, height, screen, difficulty):
         self.width = width
         self.height = height
         self.screen = screen
         self.difficulty = difficulty
-
 
     def draw(self):
         for i in range(1, BOARD_ROWS):
@@ -359,7 +347,7 @@ class Board:
     def select(self, row, col):
         pass
 
-    def click(self, x , y):
+    def click(self, x, y):
         pass
 
     def clear(self):
@@ -381,9 +369,10 @@ class Board:
         pass
 
 
+
 if __name__ == '__main__':
 
-    x = generate_sudoku(9,9)
+    x = generate_sudoku(9, 9)
     for y in x:
         for j in y:
             print(j, end=" ")
