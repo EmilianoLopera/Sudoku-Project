@@ -30,7 +30,7 @@ class SudokuGenerator:
         self.row_length = row_length
         self.removed_cells = removed_cells
         self.board = [[0 for i in range(row_length)] for j in range(row_length)]
-        self.box_length = math.sqrt(row_length)
+        self.box_length = int(math.sqrt(row_length))
 
     '''
 	Returns a 2D python list of numbers which represents the board
@@ -130,12 +130,10 @@ class SudokuGenerator:
 
     def is_valid(self, row, col, num):
         for i in range(self.row_length):
-            if self.board[row][i] == num:
+            if int(self.board[row][i]) == num:
                 return False
             if self.board[i][col] == num:
                 return False
-
-
 
         #
         # if SudokuGenerator.valid_in_row(self, row, num) and SudokuGenerator.valid_in_col(self, col, num) and SudokuGenerator.valid_in_box(row, col, num):
@@ -244,16 +242,17 @@ class SudokuGenerator:
     '''
 
     def remove_cells(self):
-        difficult = input("difficulty: ")
-        if difficult == "easy":
-            for rand in range(0,30):
-                self.board[random.randint(0,9)][random.randint(0,9)] = 0
-        if difficult == "medium":
-            for rand in range(0,40):
-                self.board[random.randint(0,9)][random.randint(0,9)] = 0
-        if difficult == "hard":
-            for rand in range(0,50):
-                self.board[random.randint(0,9)][random.randint(0,9)] = 0
+        pass
+        # difficult = input("difficulty: ")
+        # if difficult == "easy":
+        #     for rand in range(0,30):
+        #         self.board[random.randint(0,9)][random.randint(0,9)] = 0
+        # if difficult == "medium":
+        #     for rand in range(0,40):
+        #         self.board[random.randint(0,9)][random.randint(0,9)] = 0
+        # if difficult == "hard":
+        #     for rand in range(0,50):
+        #         self.board[random.randint(0,9)][random.randint(0,9)] = 0
 
 
 
@@ -377,6 +376,5 @@ class Board:
     def update_board(self):
         pass
 
-
-generate_sudoku(9,30)
+generate_sudoku(9,0)
 
