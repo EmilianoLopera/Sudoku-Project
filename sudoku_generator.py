@@ -72,7 +72,7 @@ class SudokuGenerator:
         for i in range(self.row_length):
             if self.board[row][i] == num:
                 return False
-            return True
+        return True
 
     '''
 	Determines if num is contained in the specified column (vertical) of the board
@@ -89,7 +89,7 @@ class SudokuGenerator:
         for j in range(self.row_length):
             if self.board[j][col] == num:
                 return False
-            return True
+        return True
 
     '''
 	Determines if num is contained in the 3x3 box specified on the board
@@ -108,10 +108,10 @@ class SudokuGenerator:
         row = row_start - row_start % int(math.sqrt(self.row_length))
         col = col_start - col_start % int(math.sqrt(self.row_length))
         for i in range(row, row + 3):
-            for j in range(col, row + 3):
+            for j in range(col, col + 3):
                 if self.board[i][j] == num:
                     return False
-            return True
+        return True
 
 
 
@@ -387,5 +387,9 @@ if __name__ == '__main__':
         for j in y:
             print(j, end=" ")
         print()
-
-game = SudokuGenerator(9, 40)
+#     x = SudokuGenerator(9, 0)
+#     x.fill_values()
+#     for row in x.board:
+#         print(row)
+#
+# game = SudokuGenerator(9, 40)
