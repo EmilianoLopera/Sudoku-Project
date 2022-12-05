@@ -389,4 +389,4 @@ if __name__ == '__main__':
 #     for row in x.board:
 #         print(row)
 #
-# game = SudokuGenerator(9, 40),f,
+# game = SudokuGenerator(9, 30)
