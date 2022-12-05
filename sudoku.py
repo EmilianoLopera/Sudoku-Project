@@ -1,6 +1,6 @@
 import pygame, sys
 from constants import *
-from board import Board
+from sudoku_generator import Board
 
 
 def draw_game_start(screen):
