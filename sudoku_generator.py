@@ -288,7 +288,7 @@ def generate_sudoku(size, removed):
     return board
 
 
-class cell:
+class Cell:
     def __init__(self, value, row, col, screen):
         self.value = value
         self.row = row
@@ -300,8 +300,6 @@ class cell:
 
     def set_sketched_value(self, value):
         self.value = value
-
-    # :
 
 
 class Board:
@@ -325,7 +323,7 @@ class Board:
 
         for i in range(1, BOARD_ROWS):
             pygame.draw.line(
-                screen,
+                self.screen,
                 LINE_COLOR,
                 (0, i * SQUARE_SIZE),
                 (WIDTH, i * SQUARE_SIZE),
@@ -333,7 +331,7 @@ class Board:
             )
             if i == 3 or 6:
                 pygame.draw.line(
-                    screen,
+                    self.screen,
                     LINE_COLOR,
                     (0, i * SQUARE_SIZE),
                     (WIDTH, i * SQUARE_SIZE),
@@ -342,7 +340,7 @@ class Board:
         # draw vertical lines
         for j in range(1, BOARD_COLS):
             pygame.draw.line(
-                screen,
+                self.screen,
                 LINE_COLOR,
                 (j * SQUARE_SIZE, 0),
                 (j * SQUARE_SIZE, HEIGHT),
@@ -350,7 +348,7 @@ class Board:
             )
             if j == 3 or 6:
                 pygame.draw.line(
-                    screen,
+                    self.screen,
                     LINE_COLOR,
                     (j * SQUARE_SIZE, 0),
                     (j * SQUARE_SIZE, HEIGHT),
@@ -362,7 +360,7 @@ class Board:
                 self.cells[i][j].draw(self.screen)
 
     def select(self, row, col):
-        pass
+       pass
 
     def click(self, x, y):
         pass

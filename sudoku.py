@@ -114,6 +114,33 @@ if __name__ == '__main__':
     draw_game_start(screen)  # Calls function to draw start screen
     screen.fill(BG_COLOR)
 
+
+    button_font = pygame.font.Font(None, 70)
+    restart_text = button_font.render("restart", 0, (255, 255, 255))
+    restart_surface = pygame.Surface((restart_text.get_size()[0] + 20, restart_text.get_size()[1] + 20))
+    restart_surface.fill(LINE_COLOR)
+    restart_surface.blit(restart_text, (10, 10))
+    restart_rectangle = restart_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 + 300))
+
+
+
+    reset_text = button_font.render("reset", 0, (255, 255, 255))
+    exit_text = button_font.render("exit", 0, (255, 255, 255))
+    reset_surface = pygame.Surface((reset_text.get_size()[0] + 20, reset_text.get_size()[1] + 20))
+    reset_surface.fill(LINE_COLOR)
+    reset_surface.blit(reset_text, (10, 10))
+
+    exit_surface = pygame.Surface((exit_text.get_size()[0] + 20, exit_text.get_size()[1] + 20))
+    exit_surface.fill(LINE_COLOR)
+    exit_surface.blit(exit_text, (10, 10))
+
+    # Initialize button rectangle
+    medium_rectangle = reset_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 + 150))
+    exit_rectangle = exit_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 + 250))
+
     x = generate_sudoku(9, 50)
     for j in range(len(x)):
         for q in range(len(x[j])):
@@ -148,6 +175,11 @@ if __name__ == '__main__':
                 (i * SQUARE_SIZE, HEIGHT - 100),
                 BOLD_LINE
             )
+            screen.blit(restart_surface, restart_rectangle)
+            screen.blit(reset_surface, medium_rectangle)
+            screen.blit(exit_surface, exit_rectangle)
+
+
     for i in range(9):
         for j in range(9):
             pass
