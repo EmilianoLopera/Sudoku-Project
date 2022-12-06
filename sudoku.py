@@ -165,8 +165,6 @@ def draw_game_won(screen):
 
 def main():
     game_over = False
-    chip = 'x'
-    winner = 0
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Sudoku")
@@ -236,7 +234,7 @@ def main():
                     arr = copy.deepcopy(reset_board)
                 # restart button the main screen
                 if (ex_x >= 260 and ex_x <= 350) and (ex_y >= 620 and ex_y <= 675):
-                    draw_game_start(screen)
+                    # draw_game_start(screen)
                     main()
 
                     pass
