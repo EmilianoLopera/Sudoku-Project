@@ -312,13 +312,14 @@ class Board:
         self.difficulty = difficulty
 
     def draw(self):
-        for j in range(len(self.board)):
-            for q in range(len(self.board[j])):
-                if self.board[j][q] != 0:
+        x = generate_sudoku(9, 20)
+        for j in range(len(x)):
+            for q in range(len(x[j])):
+                if x[j][q] != 0:
                     position = (((j+1) * 50) + 20, ((q+1) * 50)+15)
                     font = pygame.font.SysFont('arial', 25)
-                    text = font.render(str(self.board[j][q]), True, (0, 0, 0))
-                    self.win.blit(text, position)
+                    text = font.render(str(x[j][q]), True, (0, 0, 0))
+                    screen.blit(text, position)
                 pygame.display.update()
 
 

@@ -114,6 +114,16 @@ if __name__ == '__main__':
     draw_game_start(screen)  # Calls function to draw start screen
     screen.fill(BG_COLOR)
 
+    x = generate_sudoku(9, 20)
+    for j in range(len(x)):
+        for q in range(len(x[j])):
+            if x[j][q] != 0:
+                position = (((j + 1) * 50) + 20, ((q + 1) * 50) + 15)
+                font = pygame.font.SysFont('arial', 25)
+                text = font.render(str(x[j][q]), True, (0, 0, 0))
+                screen.blit(text, position)
+            pygame.display.update()
+
     for i in range(1, 9):
         pygame.draw.line(screen, LINE_COLOR, (0, SQUARE_SIZE * i),
                          (WIDTH, SQUARE_SIZE * i), LINE_WIDTH)
