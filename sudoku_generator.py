@@ -386,12 +386,13 @@ class Board:
 
 
 if __name__ == '__main__':
+    pass
 
-    x = generate_sudoku(9, 20)
-    for y in x:
-        for j in y:
-            print(j, end=" ")
-        print()
+    # x = generate_sudoku(9, 20)
+    # for y in x:
+    #     for j in y:
+    #         print(j, end=" ")
+    #     print()
 
 #     x = SudokuGenerator(9, 0)
 #     x.fill_values()

@@ -65,14 +65,19 @@ def draw_game_start(screen):
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rectangle.collidepoint(event.pos):
+
+
                     # Checks if mouse is on start button
-                    return  # If the mouse is on the start button, we can return to
+
+                    return 30 # If the mouse is on the start button, we can return to
                 elif medium_rectangle.collidepoint(event.pos):
                     # Checks if mouse is on start button
-                    return
+
+                    return 40
                 elif hard_rectangle.collidepoint(event.pos):
                     # Checks if mouse is on start button
-                    return
+
+                    return 50
                 elif quit_rectangle.collidepoint(event.pos):
                     # If the mouse is on the quit button, exit the program
                     sys.exit()
@@ -115,7 +120,7 @@ if __name__ == '__main__':
     screen.fill(BG_COLOR)
 
 
-    button_font = pygame.font.Font(None, 70)
+    button_font = pygame.font.Font(None, 40)
     restart_text = button_font.render("restart", 0, (255, 255, 255))
     restart_surface = pygame.Surface((restart_text.get_size()[0] + 20, restart_text.get_size()[1] + 20))
     restart_surface.fill(LINE_COLOR)
@@ -137,11 +142,12 @@ if __name__ == '__main__':
 
     # Initialize button rectangle
     medium_rectangle = reset_surface.get_rect(
-        center=(WIDTH // 2 - 200, HEIGHT // 2 + 300))
+        center=(WIDTH // 2 - 107, HEIGHT // 2 + 300))
     exit_rectangle = exit_surface.get_rect(
-        center=(WIDTH // 2 + 200, HEIGHT // 2 + 300))
+        center=(WIDTH // 2 + 100, HEIGHT // 2 + 300))
 
-    x = generate_sudoku(9, 50)
+    x = generate_sudoku(9, draw_game_start(screen))
+
     for j in range(len(x)):
         for q in range(len(x[j])):
             if x[j][q] != 0:
@@ -192,11 +198,11 @@ if __name__ == '__main__':
     #board = Board(9, 9, WIDTH, HEIGHT, screen)
     # board.print_board()
     #board.draw()
-    x = generate_sudoku(9, 20)
-    for y in x:
-        for j in y:
-            print(j, end=" ")
-        print()
+    # x = generate_sudoku(9, 20)
+    # for y in x:
+    #     for j in y:
+    #         print(j, end=" ")
+    #     print()
 
 
     while True:
