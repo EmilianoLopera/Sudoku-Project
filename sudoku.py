@@ -65,23 +65,27 @@ def draw_game_start(screen):
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rectangle.collidepoint(event.pos):
+                    return 30
 
 
                     # Checks if mouse is on start button
 
-                    return 30 # If the mouse is on the start button, we can return to
+              # If the mouse is on the start button, we can return to
                 elif medium_rectangle.collidepoint(event.pos):
                     # Checks if mouse is on start button
-
                     return 40
+
+
                 elif hard_rectangle.collidepoint(event.pos):
                     # Checks if mouse is on start button
+                  return 50
 
-                    return 50
+
                 elif quit_rectangle.collidepoint(event.pos):
                     # If the mouse is on the quit button, exit the program
                     sys.exit()
         pygame.display.update()
+
 
 
 def draw_game_over(screen):
