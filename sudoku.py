@@ -1,25 +1,34 @@
 import pygame, sys
 from constants import *
-from sudoku_generator import Board, generate_sudoku
+from sudoku_generator import *
+from board import Board
+import copy
+
+image = pygame.image.load('backround.jpg')
+DEFAULT_IMAGE_SIZE = (600,700)
+image = pygame.transform.scale(image, DEFAULT_IMAGE_SIZE)
 
 
 def draw_game_start(screen):
+
     # Initialize title font
     start_title_font = pygame.font.Font(None, 80)
     button_font = pygame.font.Font(None, 40)
+    screen.blit(image, (0,0))
+    pygame.display.flip()
     # Color background
-    screen.fill(BG_COLOR)
+    # screen.fill(BG_COLOR)
     # Initialize and draw title
-    title_surface = start_title_font.render("Welcome to Sudoku", 0, LINE_COLOR)
-    title_rectangle = title_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 200))
+    title_surface = start_title_font.render("Welcome to Sudoku", 0, (0, 0, 0))
+    title_rectangle = title_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 300))
     screen.blit(title_surface, title_rectangle)
 
     start_message_font = pygame.font.Font(None, 65)
     button_font = pygame.font.Font(None, 70)
     # Color background
     # Initialize and draw title
-    message_surface = start_message_font.render("Select a game mode:", 0, LINE_COLOR)
-    message_rectangle = message_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 10))
+    message_surface = start_message_font.render("Select a game mode:", 0, (0, 0, 0))
+    message_rectangle = message_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 130))
     screen.blit(message_surface, message_rectangle)
 
 
@@ -47,11 +56,11 @@ def draw_game_start(screen):
     quit_surface.blit(quit_text, (10, 10))
     # Initialize button rectangle
     easy_rectangle = easy_surface.get_rect(
-        center=(WIDTH // 2 - 200, HEIGHT // 2 + 180))
+        center=(WIDTH // 2 - 200, HEIGHT // 2 + 220))
     medium_rectangle = medium_surface.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 180))
+        center=(WIDTH // 2, HEIGHT // 2 + 220))
     hard_rectangle = hard_surface.get_rect(
-        center=(WIDTH // 2 + 200, HEIGHT // 2 + 180))
+        center=(WIDTH // 2 + 200, HEIGHT // 2 + 220))
     quit_rectangle = quit_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 + 550))
     # Draw buttons
@@ -59,6 +68,7 @@ def draw_game_start(screen):
     screen.blit(medium_surface, medium_rectangle)
     screen.blit(hard_surface, hard_rectangle)
     screen.blit(quit_surface, quit_rectangle)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -78,7 +88,7 @@ def draw_game_start(screen):
 
                 elif hard_rectangle.collidepoint(event.pos):
                     # Checks if mouse is on start button
-                  return 50
+                    return 50
 
 
                 elif quit_rectangle.collidepoint(event.pos):
@@ -89,40 +99,79 @@ def draw_game_start(screen):
 
 
 def draw_game_over(screen):
-    game_over_font = pygame.font.Font(None, 40)
-    screen.fill(BG_COLOR)
-    if winner != 0:
-        text = "Game Won!"
+    start_title_font = pygame.font.Font(None, 75)
+    button_font = pygame.font.Font(None, 50)
 
-    else:
-        text = "No one wins!"
-    game_over_surf = game_over_font.render(text, 0, LINE_COLOR)
-    game_over_rect = game_over_surf.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 - 100))
-    screen.blit(game_over_surf, game_over_rect)
-    restart_surf = game_over_font.render(
-        'Press r to play again...', 0, LINE_COLOR)
-    restart_rect = restart_surf.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 100))
-    screen.blit(restart_surf, restart_rect)
-    #  Added key to return to main menu
-    menu_surf = game_over_font.render(
-        'Press m to return to the main menu...', 0, LINE_COLOR)
-    menu_rect = menu_surf.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 150))
-    screen.blit(menu_surf, menu_rect)
+    screen.blit(image, (0,0))
+    pygame.display.flip()
+
+    title_surface = start_title_font.render("Game Over :( ", 0, (0, 0, 0))
+    title_rectangle = title_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 - 150))
+    screen.blit(title_surface, title_rectangle)
+
+    restart_text = button_font.render("Restart", 0, (255, 255, 255))
+    restart_surface = pygame.Surface((restart_text.get_size()[0] + 20, restart_text.get_size()[1] + 20))
+    restart_surface.fill(LINE_COLOR)
+    restart_surface.blit(restart_text, (10, 10))
+
+    restart_rectangle = restart_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2))
+
+    screen.blit(restart_surface, restart_rectangle)
+
+    pygame.display.update()
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if restart_rectangle.collidepoint(event.pos):
+                    main()
+
+def draw_game_won(screen):
+    start_title_font = pygame.font.Font(None, 75)
+    button_font = pygame.font.Font(None, 50)
+
+    screen.blit(image, (0, 0))
+    pygame.display.flip()
+
+    title_surface = start_title_font.render("Game Won!!!", 0, (0, 0, 0))
+    title_rectangle = title_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 - 150))
+    screen.blit(title_surface, title_rectangle)
+
+    exit_text = button_font.render("Exit", 0, (255, 255, 255))
+    exit_surface = pygame.Surface((exit_text.get_size()[0] + 20, exit_text.get_size()[1] + 20))
+    exit_surface.fill(LINE_COLOR)
+    exit_surface.blit(exit_text, (10, 10))
+
+    exit_rectangle = exit_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2))
+
+    screen.blit(exit_surface, exit_rectangle)
+
+    pygame.display.update()
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if exit_rectangle.collidepoint(event.pos):
+                    sys.exit()
 
 
-if __name__ == '__main__':
+def main():
     game_over = False
     chip = 'x'
     winner = 0
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Sudoku")
-    draw_game_start(screen)  # Calls function to draw start screen
+    difficulty = draw_game_start(screen)  # Calls function to draw start screen
     screen.fill(BG_COLOR)
-
 
     button_font = pygame.font.Font(None, 40)
     restart_text = button_font.render("restart", 0, (255, 255, 255))
@@ -131,8 +180,6 @@ if __name__ == '__main__':
     restart_surface.blit(restart_text, (10, 10))
     restart_rectangle = restart_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 + 300))
-
-
 
     reset_text = button_font.render("reset", 0, (255, 255, 255))
     exit_text = button_font.render("exit", 0, (255, 255, 255))
@@ -150,107 +197,130 @@ if __name__ == '__main__':
     exit_rectangle = exit_surface.get_rect(
         center=(WIDTH // 2 + 100, HEIGHT // 2 + 300))
 
-    x = generate_sudoku(9, draw_game_start(screen))
+    grid, master = generate_sudoku(9, difficulty)
+    reset_board = copy.deepcopy(grid.board)
+    grid2 = Board(WIDTH, HEIGHT, screen, 2, grid.get_board())
 
-    for j in range(len(x)):
-        for q in range(len(x[j])):
-            if x[j][q] != 0:
-                position = (((j) * 67) + 22, ((q) * 65) + 9.76)
-                font = pygame.font.SysFont('arial', 50)
-                text = font.render(str(x[j][q]), True, (0, 0, 0))
-                screen.blit(text, position)
-            pygame.display.update()
+    arr = copy.deepcopy(grid.get_board())
 
-    for i in range(1, 10):
-        pygame.draw.line(screen, LINE_COLOR, (0, SQUARE_SIZE * i),
-                         (WIDTH, SQUARE_SIZE * i), LINE_WIDTH)
-        if i == 3 or i == 6 or i == 9:
-            pygame.draw.line(
-                screen,
-                LINE_COLOR,
-                (0, i * SQUARE_SIZE),
-                (WIDTH, i * SQUARE_SIZE),
-                BOLD_LINE
-            )
-
-    # draw vertical lines
-    for i in range(1, 10):
-        pygame.draw.line(screen, LINE_COLOR, (SQUARE_SIZE * i, 0),
-                         (SQUARE_SIZE * i, HEIGHT - 100), LINE_WIDTH)
-        if i == 3 or i == 6 or i == 9:
-            pygame.draw.line(
-                screen,
-                LINE_COLOR,
-                (i * SQUARE_SIZE, 0),
-                (i * SQUARE_SIZE, HEIGHT - 100),
-                BOLD_LINE
-            )
-            screen.blit(restart_surface, restart_rectangle)
-            screen.blit(reset_surface, medium_rectangle)
-            screen.blit(exit_surface, exit_rectangle)
+    grid2.draw(screen)
 
 
-    for i in range(9):
-        for j in range(9):
-            pass
-            #cells[i][j].draw(screen)
-
-
-    # draw_lines()
-    # middle_cell = Cell('o', 1, 1, 200, 200)
-    # middle_cell.draw(screen)
-    #board = Board(9, 9, WIDTH, HEIGHT, screen)
-    # board.print_board()
-    #board.draw()
-    # x = generate_sudoku(9, 20)
-    # for y in x:
-    #     for j in y:
-    #         print(j, end=" ")
-    #     print()
+    screen.blit(restart_surface, restart_rectangle)
+    screen.blit(reset_surface, medium_rectangle)
+    screen.blit(exit_surface, exit_rectangle)
 
 
     while True:
 
+        # x, y = None, None
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+
             if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
-                clicked_row = int(event.pos[1] / SQUARE_SIZE)
-                clicked_col = int(event.pos[0] / SQUARE_SIZE)
-                print(clicked_row, clicked_col)
-                if board.available_square(clicked_row, clicked_col):
-                    board.print_board()
-                    board.mark_square(clicked_row, clicked_col, chip)
-                    if board.check_if_winner(chip):
-                        if chip == 'X':
-                            winner = 1
-                        else:
-                            winner = 2
-                        game_over = True
-                    else:
-                        if board.board_is_full():
-                            winner = 0
-                            game_over = True
-                    chip = 'o' if chip == 'x' else 'x'
-                    board.draw()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_r:
-                    game_over = False
-                    chip = 'x'
-                    board.reset_board()
-                    screen.fill(BG_COLOR)
-                    board.draw()
-                if event.key == pygame.K_m:
-                    #  If the user presses m, return to the main menu
-                    game_over = False
-                    chip = 'x'
-                    board.reset_board()
+
+                ex_x, ex_y = event.pos
+
+                x, y = ex_x, ex_y
+                # print(x, y)
+                if (y <= 600):
+                    x, y = grid2.click(x, y)
+                    grid2.select(x, y)
+
+                # reset button
+                if (ex_x >= 150 and ex_x <= 240) and (ex_y >= 620 and ex_y <= 675):
+
+                    grid2.reset_to_original(reset_board)
+                    arr = copy.deepcopy(reset_board)
+                # restart button the main screen
+                if (ex_x >= 260 and ex_x <= 350) and (ex_y >= 620 and ex_y <= 675):
                     draw_game_start(screen)
-                    screen.fill(BG_COLOR)
-                    board.draw()
+                    main()
+
+                    pass
+
+                if (ex_x >= 366 and ex_x <= 435) and (ex_y >= 627 and ex_y <= 670):
+                    sys.exit()
+
+            if event.type == pygame.KEYDOWN:
+                if grid.get_board()[x][y] == 0:
+                    if event.key == pygame.K_1:
+                        num = 1
+                        grid2.sketch(1, x, y)
+                    if event.key == pygame.K_2:
+                        num = 2
+                        grid2.sketch(2, x, y)
+                    if event.key == pygame.K_3:
+                        num = 3
+                        grid2.sketch(3, x, y)
+                    if event.key == pygame.K_4:
+                        num = 4
+                        grid2.sketch(4, x, y)
+                    if event.key == pygame.K_5:
+                        num = 5
+                        grid2.sketch(5, x, y)
+                    if event.key == pygame.K_6:
+                        num = 6
+                        grid2.sketch(6, x, y)
+                    if event.key == pygame.K_7:
+                        num = 7
+                        grid2.sketch(7, x, y)
+                    if event.key == pygame.K_8:
+                        grid2.sketch(8, x, y)
+                        num = 8
+                    if event.key == pygame.K_9:
+                        num = 9
+
+                        grid2.sketch(9, x, y)
+                    # make a
+                    if event.key == pygame.K_RETURN:
+                        # if(num != -1):
+                        grid2.place(num, x, y)
+                        arr[x][y] = num
+                        num = 0
+
+                        full = True
+                        for i in range(9):
+                            for j in range(9):
+                                if arr[i][j] == 0:
+                                    full = False
+
+                        if full:
+                            correct = True
+                            for i in range(9):
+                                for j in range(9):
+                                    if (arr[i][j] != master[i][j]):
+                                        correct = False
+
+                            if correct:
+                                draw_game_won(screen)
+
+
+                            else:
+                                draw_game_over(screen)
+
+
+                        pass
+                    if event.key == pygame.K_BACKSPACE:
+                        grid2.clear(x, y)
+                        arr[x][y] = 0
+                        num = 0
+
+
+
+                    pass
+
+
         # game is over
         if game_over:
             pygame.display.update()
             pygame.time.delay(1000)
             draw_game_over(screen)
         pygame.display.update()
+
+
+
+if __name__ == '__main__':
+    main()

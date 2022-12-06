@@ -62,7 +62,7 @@ class SudokuGenerator:
 	Parameters:
 	row is the index of the row we are checking
 	num is the value we are looking for in the row
-	
+
 	Return: boolean
     '''
 
@@ -79,7 +79,7 @@ class SudokuGenerator:
 	Parameters:
 	col is the index of the column we are checking
 	num is the value we are looking for in the column
-	
+
 	return: Boolean
     '''
 
@@ -164,7 +164,7 @@ class SudokuGenerator:
     Provided for students
     Fills the remaining cells of the board
     Should be called after the diagonal boxes have been filled
-	
+
 	Parameters:
 	row, col specify the coordinates of the first empty (0) cell
 
@@ -217,7 +217,7 @@ class SudokuGenerator:
     This is done by setting some values to 0
     Should be called after the entire solution has been constructed
     i.e. after fill_values has been called
-    
+
     NOTE: Be careful not to 'remove' the same cell multiple times
     i.e. if a cell is already 0, it cannot be removed again
 
@@ -228,10 +228,11 @@ class SudokuGenerator:
     def remove_cells(self):
         remove = self.removed_cells
         for i in range(remove):
-            (x,y) = (random.randint(0,8), random.randint(0,8))
+            (x, y) = (random.randint(0, 8), random.randint(0, 8))
             while self.board[x][y] == 0:
                 (x, y) = (random.randint(0, 8), random.randint(0, 8))
             self.board[x][y] = 0
+
 
 '''
 do not change(unless its like cool too)
@@ -259,7 +260,6 @@ def generate_sudoku(size, removed):
     sudoku.remove_cells()
     board = sudoku.get_board()
     return sudoku, arr
-
 
 
 

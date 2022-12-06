@@ -44,8 +44,9 @@ class Board:
                     (i * SQUARE_SIZE, HEIGHT - 100),
                     BOLD_LINE
                 )
+    #select box
     def select(self, row, col):
-        # self.draw(self.screen)
+        self.draw(self.screen)
         self.draw(self.screen)
 
         x = (row ) * 67
