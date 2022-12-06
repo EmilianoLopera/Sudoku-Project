@@ -310,7 +310,8 @@ class Board:
         self.difficulty = difficulty
 
     def draw(self):
-        x = generate_sudoku(9, 20)
+
+        x = generate_sudoku(9, self.difficulty)
         for j in range(len(x)):
             for q in range(len(x[j])):
                 if x[j][q] != 0:

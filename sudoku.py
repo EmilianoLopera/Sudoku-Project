@@ -66,7 +66,8 @@ def draw_game_start(screen):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rectangle.collidepoint(event.pos):
                     # Checks if mouse is on start button
-                    return 30 # If the mouse is on the start button, we can return to
+                    return 30
+                    # If the mouse is on the start button, we can return to
                 elif medium_rectangle.collidepoint(event.pos):
                     # Checks if mouse is on start button
                     return 40
@@ -107,8 +108,6 @@ def draw_game_over(screen):
 
 if __name__ == '__main__':
     game_over = False
-    chip = 'x'
-    winner = 0
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Sudoku")
@@ -141,8 +140,10 @@ if __name__ == '__main__':
         center=(WIDTH // 2 - 200, HEIGHT // 2 + 300))
     exit_rectangle = exit_surface.get_rect(
         center=(WIDTH // 2 + 200, HEIGHT // 2 + 300))
-
-    x = generate_sudoku(9, draw_game_start(screen))
+    # replace with Board()
+    board = Board(WIDTH, HEIGHT, screen, difficulty)
+    board.draw()
+    x = generate_sudoku(9, difficulty)
     for j in range(len(x)):
         for q in range(len(x[j])):
             if x[j][q] != 0:
