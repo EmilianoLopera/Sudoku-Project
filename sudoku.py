@@ -114,20 +114,20 @@ if __name__ == '__main__':
     draw_game_start(screen)  # Calls function to draw start screen
     screen.fill(BG_COLOR)
 
-    x = generate_sudoku(9, 20)
+    x = generate_sudoku(9, 50)
     for j in range(len(x)):
         for q in range(len(x[j])):
             if x[j][q] != 0:
-                position = (((j + 1) * 50) + 20, ((q + 1) * 50) + 15)
-                font = pygame.font.SysFont('arial', 25)
+                position = (((j) * 67) + 22, ((q) * 65) + 9.76)
+                font = pygame.font.SysFont('arial', 50)
                 text = font.render(str(x[j][q]), True, (0, 0, 0))
                 screen.blit(text, position)
             pygame.display.update()
 
-    for i in range(1, 9):
+    for i in range(1, 10):
         pygame.draw.line(screen, LINE_COLOR, (0, SQUARE_SIZE * i),
                          (WIDTH, SQUARE_SIZE * i), LINE_WIDTH)
-        if i == 3 or i == 6:
+        if i == 3 or i == 6 or i == 9:
             pygame.draw.line(
                 screen,
                 LINE_COLOR,
@@ -137,15 +137,15 @@ if __name__ == '__main__':
             )
 
     # draw vertical lines
-    for i in range(1, 9):
+    for i in range(1, 10):
         pygame.draw.line(screen, LINE_COLOR, (SQUARE_SIZE * i, 0),
-                         (SQUARE_SIZE * i, HEIGHT), LINE_WIDTH)
-        if i == 3 or i == 6:
+                         (SQUARE_SIZE * i, HEIGHT - 100), LINE_WIDTH)
+        if i == 3 or i == 6 or i == 9:
             pygame.draw.line(
                 screen,
                 LINE_COLOR,
                 (i * SQUARE_SIZE, 0),
-                (i * SQUARE_SIZE, HEIGHT),
+                (i * SQUARE_SIZE, HEIGHT - 100),
                 BOLD_LINE
             )
     for i in range(9):
