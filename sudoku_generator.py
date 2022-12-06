@@ -1,6 +1,5 @@
 import math, random
-import pygame
-from constants import *
+import copy
 
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
@@ -142,15 +141,6 @@ class SudokuGenerator:
 
     def fill_box(self, row_start, col_start):
         arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        # row = row_start - row_start % int(math.sqrt(self.row_length))
-        # col = col_start - col_start % int(math.sqrt(self.row_length))
-        # for i in range(row, 9):
-        #     for j in range(col, 9):
-        #         if self.board[i][j] == 0:
-        #             for num in range(0,9):
-        #                 if(self.is_valid(i,j,num)):
-        #                     self.board [i][j] = random.randint(1,9)
-
         for i in range(3):
             for j in range(3):
                 if self.board[j + row_start][i + col_start] == 0:
@@ -242,28 +232,9 @@ class SudokuGenerator:
             while self.board[x][y] == 0:
                 (x, y) = (random.randint(0, 8), random.randint(0, 8))
             self.board[x][y] = 0
-        # for rand in range(0, remove):
-        #     cell = self.board[random.randint(0, 8)][random.randint(0, 8)]
-        #     if cell != 0:
-        #         self.board[random.randint(0, 8)][random.randint(0, 8)] = 0
-
-
-
-
-        # difficult = input("difficulty: ")
-        # if difficult == "easy":
-        #     for rand in range(0,30):
-        #         self.board[random.randint(0,9)][random.randint(0,9)] = 0
-        # if difficult == "medium":
-        #     for rand in range(0,40):
-        #         self.board[random.randint(0,9)][random.randint(0,9)] = 0
-        # if difficult == "hard":
-        #     for rand in range(0,50):
-        #         self.board[random.randint(0,9)][random.randint(0,9)] = 0
-
 
 '''
-DO NOT CHANGE
+do not change(unless its like cool too)
 Provided for students
 Given a number of rows and number of cells to remove, this function:
 1. creates a SudokuGenerator
@@ -282,121 +253,16 @@ Return: list[list] (a 2D Python list to represent the board)
 def generate_sudoku(size, removed):
     sudoku = SudokuGenerator(size, removed)
     sudoku.fill_values()
+    arr = copy.deepcopy(sudoku.board)
     board = sudoku.get_board()
+
     sudoku.remove_cells()
     board = sudoku.get_board()
-    return board
-
-
-class Cell:
-    def __init__(self, value, row, col, screen):
-        self.value = value
-        self.row = row
-        self.col = col
-        self.screen = screen
-
-    def set_cell_value(self, value):
-        self.value = value
-
-    def set_sketched_value(self, value):
-        self.value = value
-
-
-class Board:
-    def __init__(self, width, height, screen, difficulty):
-        self.width = width
-        self.height = height
-        self.screen = screen
-        self.difficulty = difficulty
-
-    def draw(self):
-        x = generate_sudoku(9, 20)
-        for j in range(len(x)):
-            for q in range(len(x[j])):
-                if x[j][q] != 0:
-                    position = (((j+1) * 50) + 20, ((q+1) * 50)+15)
-                    font = pygame.font.SysFont('arial', 25)
-                    text = font.render(str(x[j][q]), True, (0, 0, 0))
-                    screen.blit(text, position)
-                pygame.display.update()
-
-
-        for i in range(1, BOARD_ROWS):
-            pygame.draw.line(
-                self.screen,
-                LINE_COLOR,
-                (0, i * SQUARE_SIZE),
-                (WIDTH, i * SQUARE_SIZE),
-                LINE_WIDTH
-            )
-            if i == 3 or 6:
-                pygame.draw.line(
-                    self.screen,
-                    LINE_COLOR,
-                    (0, i * SQUARE_SIZE),
-                    (WIDTH, i * SQUARE_SIZE),
-                    BOLD_LINE
-                )
-        # draw vertical lines
-        for j in range(1, BOARD_COLS):
-            pygame.draw.line(
-                self.screen,
-                LINE_COLOR,
-                (j * SQUARE_SIZE, 0),
-                (j * SQUARE_SIZE, HEIGHT),
-                LINE_WIDTH
-            )
-            if j == 3 or 6:
-                pygame.draw.line(
-                    self.screen,
-                    LINE_COLOR,
-                    (j * SQUARE_SIZE, 0),
-                    (j * SQUARE_SIZE, HEIGHT),
-                    BOLD_LINE
-                )
-        # draw cells
-        for i in range(self.rows):
-            for j in range(self.cols):
-                self.cells[i][j].draw(self.screen)
-
-    def select(self, row, col):
-       pass
-
-    def click(self, x, y):
-        pass
-
-    def clear(self):
-        pass
-
-    def sketch(self, value):
-        pass
-
-    def place_number(self, value):
-        pass
-
-    def is_full(self):
-        for row in self.board:
-            for num in row:
-                if num == 0:
-                    return False
-
-    def update_board(self):
-        pass
+    return sudoku, arr
 
 
 
-if __name__ == '__main__':
-    pass
 
-    # x = generate_sudoku(9, 20)
-    # for y in x:
-    #     for j in y:
-    #         print(j, end=" ")
-    #     print()
 
-#     x = SudokuGenerator(9, 0)
-#     x.fill_values()
-#     for row in x.board:
-#         print(row)
-#
-# game = SudokuGenerator(9, 30)
+
+
