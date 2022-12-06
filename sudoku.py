@@ -5,21 +5,21 @@ from sudoku_generator import Board, generate_sudoku
 
 def draw_game_start(screen):
     # Initialize title font
-    start_title_font = pygame.font.Font(None, 100)
-    button_font = pygame.font.Font(None, 70)
+    start_title_font = pygame.font.Font(None, 80)
+    button_font = pygame.font.Font(None, 40)
     # Color background
     screen.fill(BG_COLOR)
     # Initialize and draw title
-    title_surface = start_title_font.render("Sudoku", 0, LINE_COLOR)
-    title_rectangle = title_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 150))
+    title_surface = start_title_font.render("Welcome to Sudoku", 0, LINE_COLOR)
+    title_rectangle = title_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 200))
     screen.blit(title_surface, title_rectangle)
 
-    start_message_font = pygame.font.Font(None, 75)
+    start_message_font = pygame.font.Font(None, 65)
     button_font = pygame.font.Font(None, 70)
     # Color background
     # Initialize and draw title
-    message_surface = start_message_font.render("Select a game mode", 0, LINE_COLOR)
-    message_rectangle = message_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 70))
+    message_surface = start_message_font.render("Select a game mode:", 0, LINE_COLOR)
+    message_rectangle = message_surface.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 10))
     screen.blit(message_surface, message_rectangle)
 
 
@@ -47,11 +47,11 @@ def draw_game_start(screen):
     quit_surface.blit(quit_text, (10, 10))
     # Initialize button rectangle
     easy_rectangle = easy_surface.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 50))
+        center=(WIDTH // 2 - 200, HEIGHT // 2 + 180))
     medium_rectangle = medium_surface.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 150))
+        center=(WIDTH // 2, HEIGHT // 2 + 180))
     hard_rectangle = hard_surface.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 250))
+        center=(WIDTH // 2 + 200, HEIGHT // 2 + 180))
     quit_rectangle = quit_surface.get_rect(
         center=(WIDTH // 2, HEIGHT // 2 + 550))
     # Draw buttons
@@ -137,9 +137,9 @@ if __name__ == '__main__':
 
     # Initialize button rectangle
     medium_rectangle = reset_surface.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 150))
+        center=(WIDTH // 2 - 200, HEIGHT // 2 + 300))
     exit_rectangle = exit_surface.get_rect(
-        center=(WIDTH // 2, HEIGHT // 2 + 250))
+        center=(WIDTH // 2 + 200, HEIGHT // 2 + 300))
 
     x = generate_sudoku(9, 50)
     for j in range(len(x)):
