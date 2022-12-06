@@ -243,6 +243,6 @@ if __name__ == '__main__':
         # game is over
         if game_over:
             pygame.display.update()
-            pygame.time.delay(1000)
+            pygame.time.delay(999)
             draw_game_over(screen)
         pygame.display.update()
