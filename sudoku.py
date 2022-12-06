@@ -87,6 +87,7 @@ def draw_game_start(screen):
 def draw_game_over(screen):
     game_over_font = pygame.font.Font(None, 40)
     screen.fill(BG_COLOR)
+
     if winner != 0:
         text = "Game Won!"
 
