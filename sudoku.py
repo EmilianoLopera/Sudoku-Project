@@ -197,7 +197,7 @@ def main():
     exit_rectangle = exit_surface.get_rect(
         center=(WIDTH // 2 + 100, HEIGHT // 2 + 300))
 
-    grid, master = generate_sudoku(9, difficulty)
+    grid, master = generate_sudoku1(9, difficulty)
     reset_board = copy.deepcopy(grid.board)
     grid2 = Board(WIDTH, HEIGHT, screen, 2, grid.get_board())
 

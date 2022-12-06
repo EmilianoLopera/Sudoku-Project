@@ -259,6 +259,15 @@ def generate_sudoku(size, removed):
 
     sudoku.remove_cells()
     board = sudoku.get_board()
+    return board
+def generate_sudoku1(size, removed):
+    sudoku = SudokuGenerator(size, removed)
+    sudoku.fill_values()
+    arr = copy.deepcopy(sudoku.board)
+    board = sudoku.get_board()
+
+    sudoku.remove_cells()
+    board = sudoku.get_board()
     return sudoku, arr
 
 
